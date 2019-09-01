@@ -5,8 +5,10 @@ function adjacentElementsProduct(inputArray: number[]): number {
 			product = inputArray[i] * inputArray[i + 1];
 		}
 	}
-
 	return product;
 }
 
 console.log(adjacentElementsProduct([3, 6, -2, -5, 7, 3]));
+console.log(adjacentElementsProduct([3, 9, -2, -5, 7, 3]));
+console.log(adjacentElementsProduct([-1, -2, -2, -5, -7, -3]));
+console.log(adjacentElementsProduct([-1, 2, -2, 5, -7, 3]));
