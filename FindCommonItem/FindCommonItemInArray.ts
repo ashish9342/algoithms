@@ -4,7 +4,8 @@ const array2 = ['w', 'y', 'x'];
 // return true and false
 
 // Brute force
-//  BigO => O(a*b)
+//  BigO => O(a*b) time complexity
+// space complexity
 // function findCommonItem(array1: string[], array2: string[]) {
 //   for (let i = 0; i < array1.length; i++) {
 //     for (let j = 0; array2.length; i++) {
@@ -15,8 +16,6 @@ const array2 = ['w', 'y', 'x'];
 //     return false;
 //   }
 // }
-// --------------------------
-// Time Complexity BigO => O(a + b)
 
 function findCommonItem2(array1: string[] = [], array2: string[] = []) {
   let map = {};
@@ -36,5 +35,14 @@ function findCommonItem2(array1: string[] = [], array2: string[] = []) {
   }
   return false;
 }
+// ----------------------------------------------
+// Time Complexity BigO => O(a + b)
+// space complexity 0(n)
+
+function findCommonItem3(array1: string[] = [], array2: string[] = []) {
+  return array1.some(item => array2.includes(item));
+}
+
+//  built in functions
 
 console.log(findCommonItem2(array1, array2));
