@@ -68,7 +68,14 @@ class LinkedList {
       return this.append(value);
     }
 
+    const newNode = {
+      value,
+      next: null,
+    };
+
     const leader = this.traverseToIndex(index - 1);
+    const holdingPointer = leader.next;
+    leader.next = newNode;
   }
 
   private traverseToIndex(index: number) {
