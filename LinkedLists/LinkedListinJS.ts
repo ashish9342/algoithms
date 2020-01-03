@@ -76,6 +76,9 @@ class LinkedList {
     const leader = this.traverseToIndex(index - 1);
     const holdingPointer = leader.next;
     leader.next = newNode;
+    newNode.next = holdingPointer;
+    this.length++;
+    return this.print();
   }
 
   private traverseToIndex(index: number) {
