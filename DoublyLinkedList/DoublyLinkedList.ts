@@ -1,8 +1,9 @@
-//  10 => 5 => 16
+//  10 <=> 5 <=> 16
 
-// const myLinkedList = {
+// const myDoublyLinkedList = {
 //   head: {
 //     value: 10,
+//     prev: null,
 //     next: {
 //       value: 5,
 //       next: {
@@ -15,7 +16,7 @@
 
 // [10,5,16]
 
-class LinkedList {
+class DoublyLinkedList {
   head: any;
   tail: any;
   length: number;
@@ -23,6 +24,7 @@ class LinkedList {
   constructor(value: any) {
     this.head = {
       value: value,
+      prev: null,
       next: null,
     };
 
@@ -33,23 +35,27 @@ class LinkedList {
   public append(value: number) {
     const newNode = {
       value: value,
+      prev: null,
       next: null,
     };
+    newNode.prev = this.tail;
     this.tail.next = newNode;
     this.tail = newNode;
     this.length++;
 
-    // console.log(this);
+    console.log(this);
 
-    return this.print();
+    return this;
   }
 
   public prepend(value: number) {
     const newNode = {
       value: value,
+      prev: null,
       next: null,
     };
     newNode.next = this.head;
+    this.head.prev = newNode;
     this.head = newNode;
     this.length++;
     return this.print();
@@ -59,10 +65,11 @@ class LinkedList {
     const array = [];
     let currentNode = this.head;
     while (currentNode.next !== null) {
+      console.log(currentNode.value);
+
       array.push(currentNode.value);
       currentNode = currentNode.next;
     }
-    console.log(array);
     return array;
   }
 
@@ -73,16 +80,20 @@ class LinkedList {
 
     const newNode = {
       value,
+      prev: null,
       next: null,
     };
-    // [10,5,16]
-    // insert(1,14)
-    // [10,14,5,16]
 
-    const leader = this.traverseToIndex(index - 1); //10
-    const holdingPointer = leader.next; //10 = > {5, next}
-    leader.next = newNode; //10 => {14, next: null,}
-    newNode.next = holdingPointer; // {14, next: {5, next}}
+    const leader = this.traverseToIndex(index - 1);
+    const follower = leader.next;
+
+    leader.next = newNode;
+
+    newNode.prev = leader;
+    newNode.next = follower;
+
+    follower.prev = newNode;
+
     this.length++;
     return this.print();
   }
@@ -91,13 +102,15 @@ class LinkedList {
     if (index > this.length) {
       throw 'Index value not present in Queue';
     }
-    // [10,14,5,16]
-    // remove(1)
-    // [10,5,16]
+    // [10,14,5,16, 17, 18]
+    // remove(3)
+    // [10,14,5, 17, 18]
 
     const leader = this.traverseToIndex(index - 1); // 10
-    const holdingPointer = leader.next; //  {14, next}
-    leader.next = holdingPointer.next;
+    const follower = leader.next; //  {17, next, prev}
+
+    leader.next = follower.next;
+    follower.next.prev = follower.prev;
     this.length--;
     return this.print();
   }
@@ -113,30 +126,14 @@ class LinkedList {
 
     return currentNode;
   }
-  public reverse() {
-    if (!this.head.next) {
-      return this.head;
-    }
-    let first = this.head;
-    let second = first.next;
-    this.tail = this.tail;
-    while (second) {
-      const temp = second.next;
-      second.next = first;
-      first = second;
-      second = temp;
-    }
-    this.head.next = null;
-    this.head = first;
-    return this.print();
-  }
 }
 
-const myLinkedList = new LinkedList(10);
-myLinkedList.append(5);
-myLinkedList.append(34);
-console.log(myLinkedList.prepend(1));
-myLinkedList.reverse();
+const mydoubleLinkedList = new DoublyLinkedList(10);
+mydoubleLinkedList.append(5);
+mydoubleLinkedList.append(16);
+mydoubleLinkedList.print();
+
+console.log(mydoubleLinkedList.prepend(1));
 
 // myLinkedList.print();
-// myLinkedList.remove(1);
+// console.log(mydoubleLinkedList.remove(1));
