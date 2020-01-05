@@ -13,6 +13,8 @@
 //   },
 // };
 
+// [10,5,16]
+
 class LinkedList {
   head: any;
   tail: any;
@@ -48,8 +50,9 @@ class LinkedList {
       next: null,
     };
     newNode.next = this.head;
+    this.head = newNode;
     this.length++;
-    return this;
+    return this.print();
   }
 
   public print() {
@@ -72,12 +75,30 @@ class LinkedList {
       value,
       next: null,
     };
+    // [10,5,16]
+    // insert(1,14)
+    // [10,14,5,16]
 
-    const leader = this.traverseToIndex(index - 1);
-    const holdingPointer = leader.next;
-    leader.next = newNode;
-    newNode.next = holdingPointer;
+    const leader = this.traverseToIndex(index - 1); //10
+    const holdingPointer = leader.next; //10 = > {5, next}
+    leader.next = newNode; //10 => {14, next: null,}
+    newNode.next = holdingPointer; // {14, next: {5, next}}
     this.length++;
+    return this.print();
+  }
+
+  public remove(index: number) {
+    if (index > this.length) {
+      throw 'Index value not present in Queue';
+    }
+    // [10,14,5,16]
+    // remove(1)
+    // [10,5,16]
+
+    const leader = this.traverseToIndex(index - 1); // 10
+    const holdingPointer = leader.next; //  {14, next}
+    leader.next = holdingPointer.next;
+    this.length--;
     return this.print();
   }
 
@@ -97,5 +118,7 @@ class LinkedList {
 const myLinkedList = new LinkedList(10);
 myLinkedList.append(5);
 myLinkedList.append(16);
-myLinkedList.prepend(1);
-myLinkedList.print();
+console.log(myLinkedList.prepend(1));
+
+// myLinkedList.print();
+// myLinkedList.remove(1);
