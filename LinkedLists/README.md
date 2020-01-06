@@ -6,7 +6,21 @@
 2. Insert anything and anywhere
 3. traversal = > itteration
 4. scattered all over the memory
-5. itteration is slower than arrays
+5. iteration is slower than arrays
+
+---
+
+## PRO
+
+1. Fast Insertion
+2. Fast deletion
+3. Ordered
+4. Flixible
+
+## CONS
+
+1. Slow Lookup
+2. More Memory
 
 ## Big(O)
 

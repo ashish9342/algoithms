@@ -20,7 +20,7 @@ class LinkedList {
   tail: any;
   length: number;
 
-  constructor(value: any) {
+  constructor(value: number) {
     this.head = {
       value: value,
       next: null,
@@ -41,7 +41,7 @@ class LinkedList {
 
     // console.log(this);
 
-    return this.print();
+    return this;
   }
 
   public prepend(value: number) {
@@ -52,7 +52,7 @@ class LinkedList {
     newNode.next = this.head;
     this.head = newNode;
     this.length++;
-    return this.print();
+    return this;
   }
 
   public print() {
