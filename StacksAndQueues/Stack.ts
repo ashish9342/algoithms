@@ -45,11 +45,11 @@ class Stack {
     console.log(currentNode);
 
     for (let i = 0; i < this.length; i++) {
-      array.push(currentNode.value);
+      array.unshift(currentNode.value);
       currentNode = currentNode.next;
-      console.log(array.reverse());
+      console.log(array);
     }
-    return array.reverse();
+    return array;
   }
 
   public push(value: string) {
