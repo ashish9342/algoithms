@@ -31,3 +31,8 @@ reference to memory to something else
 delete
 
 https://visualgo.net/en/list
+
+### Implementation
+
+1. File system
+2. History in browser
